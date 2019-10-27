@@ -10,7 +10,7 @@ import {
   View,
   Dimensions,
 } from 'react-native';
-import { Button, SocialButton, Loader } from '../components';
+import { Button, SocialButton } from '../components';
 
 import { colors, typography, dimensions } from '../theme';
 
@@ -56,7 +56,6 @@ export const Login = () => {
             autoCorrect={false}
           />
           <Button text="Log In" callBack={doLogIn} />
-          <Loader visible={false} />
           <View style={styles.socialStyle}>
             <SocialButton type="facebook" />
             <SocialButton type="google" />
@@ -78,9 +77,9 @@ const styles = StyleSheet.create({
     display: 'flex',
   },
   socialStyle: {
-    // display: 'flex',
+    display: 'flex',
     flexDirection: 'row',
-    // justifyContent: 'space-between',
+    height: 55,
   },
   textStyle: {
     color: colors.black,

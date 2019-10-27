@@ -4,23 +4,34 @@ import {
   StyleSheet,
   View,
   TouchableNativeFeedback,
+  TouchableOpacity,
+  Platform,
 } from 'react-native';
-import { Icon } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
+
 import { colors, typography, dimensions } from '../theme';
 
 export const Button = ({ text, callBack }) => {
-  return (
+  let android = Platform.OS === 'android';
+  return android ? (
     <TouchableNativeFeedback onPress={callBack}>
       <View style={styles.button}>
         <Text style={styles.buttonText}>{text}</Text>
       </View>
     </TouchableNativeFeedback>
+  ) : (
+    <TouchableOpacity onPress={callBack}>
+      <View style={styles.button}>
+        <Text style={styles.buttonText}>{text}</Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
 export const SocialButton = ({ type, callBack }) => {
+  let android = Platform.OS === 'android';
   const buttonType = type === 'facebook';
-  return (
+  return android ? (
     <TouchableNativeFeedback onPress={callBack}>
       <View
         style={
@@ -29,19 +40,26 @@ export const SocialButton = ({ type, callBack }) => {
       >
         {buttonType ? (
           <Icon
-            name="facebook-f"
             color={colors.primaryText}
-            type="font-awesome"
+            size={20}
+            name="facebook"
           />
         ) : (
-          <Icon
-            name="google"
-            color={colors.primaryText}
-            type="font-awesome"
-          />
+          <Icon color={colors.primaryText} size={20} name="google" />
         )}
       </View>
     </TouchableNativeFeedback>
+  ) : (
+    <TouchableOpacity
+      style={buttonType ? styles.facebookButton : styles.googleButton}
+      onPress={callBack}
+    >
+      {buttonType ? (
+        <Icon color={colors.primaryText} size={20} name="facebook" />
+      ) : (
+        <Icon color={colors.primaryText} size={20} name="google" />
+      )}
+    </TouchableOpacity>
   );
 };
 
@@ -63,25 +81,21 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   facebookButton: {
-    width: '30%',
     borderWidth: 1,
     borderColor: colors.black,
-    height: 45,
     justifyContent: 'center',
     alignItems: 'center',
+    flex: 1,
     margin: 10,
     backgroundColor: colors.facebook,
-    flexGrow: 1,
   },
   googleButton: {
-    width: '30%',
     borderWidth: 1,
     borderColor: colors.black,
-    height: 45,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     margin: 10,
     backgroundColor: colors.google,
-    flexGrow: 1,
   },
 });

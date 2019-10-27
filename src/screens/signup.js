@@ -82,11 +82,12 @@ const styles = StyleSheet.create({
   },
   subContainer: {
     display: 'flex',
+    margin: 'auto',
   },
   socialStyle: {
-    // display: 'flex',
+    display: 'flex',
     flexDirection: 'row',
-    // justifyContent: 'space-between',
+    height: 55,
   },
   textStyle: {
     color: colors.black,
