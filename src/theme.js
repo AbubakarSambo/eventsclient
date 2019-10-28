@@ -1,4 +1,4 @@
-import { Platform, Dimensions } from 'react-native';
+import { Platform, Dimensions, Text } from 'react-native';
 
 const dimensions = Dimensions.get('window');
 
@@ -9,6 +9,7 @@ const primaryOpaque = opacity => `rgba(18, 25, 50, ${opacity})`;
 const black = '#000000';
 
 const primaryText = 'white';
+const gray = '#dadada';
 const facebook = '#364EA0';
 const google = '#B51313';
 
@@ -18,6 +19,7 @@ const colors = {
   primary,
   facebook,
   google,
+  gray,
   black,
   highlight,
   primaryLight,
