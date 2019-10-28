@@ -10,15 +10,18 @@ import {
   View,
   Dimensions,
 } from 'react-native';
-import { Button, SocialButton } from '../components';
+import { Button, SocialButton, TextLink } from '../components';
 
 import { colors, typography, dimensions } from '../theme';
 
-export const Login = () => {
+export const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [visible, toggleVisible] = useState(false);
 
+  const goToSignup = () => {
+    navigation.navigate('Signup');
+  };
   const doLogIn = () => {
     let data = {
       email,
@@ -60,6 +63,7 @@ export const Login = () => {
             <SocialButton type="facebook" />
             <SocialButton type="google" />
           </View>
+          <TextLink callBack={goToSignup} text="Sign Up" />
         </View>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
