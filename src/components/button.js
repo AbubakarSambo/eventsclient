@@ -28,18 +28,18 @@ export const Button = ({ text, callBack }) => {
   );
 };
 
-export const IconButton = ({ callBack, name }) => {
+export const IconButton = ({ callBack, name, size, color }) => {
   let android = Platform.OS === 'android';
   return android ? (
     <TouchableNativeFeedback onPress={callBack}>
       <View style={{ padding: 3 }}>
-        <Icon color={colors.gray} size={20} name={name} />
+        <Icon color={color} size={size} name={name} />
       </View>
     </TouchableNativeFeedback>
   ) : (
     <TouchableOpacity style={{ padding: 3 }} onPress={callBack}>
       <View>
-        <Icon color={colors.gray} size={20} name={name} />
+        <Icon color={color} size={size} name={name} />
       </View>
     </TouchableOpacity>
   );

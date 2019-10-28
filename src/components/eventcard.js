@@ -28,8 +28,16 @@ export const EventCard = ({
         <FancyText text="Saturday" />
         <FancyText text="Free Entry" />
         <View style={styles.icons}>
-          <IconButton name="bookmark-o" />
-          <IconButton name="caret-square-o-right" />
+          <IconButton
+            color={colors.gray}
+            size={20}
+            name="bookmark-o"
+          />
+          <IconButton
+            color={colors.gray}
+            size={20}
+            name="caret-square-o-right"
+          />
         </View>
       </View>
       <View style={styles.image}>

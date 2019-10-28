@@ -20,11 +20,18 @@ import { Login } from './src/screens/login';
 import { Home } from './src/screens/home/home';
 import { Saved } from './src/screens/saved/saved';
 import { Profile } from './src/screens/profile/profile';
+import { Event } from './src/screens/event/event';
 
-const AuthStack = createStackNavigator({
-  Signup: Signup,
-  Login: Login,
-});
+const AuthStack = createStackNavigator(
+  {
+    Signup: Signup,
+    Login: Login,
+    Event: Event,
+  },
+  {
+    initialRouteName: 'Event',
+  },
+);
 const AppStack = createBottomTabNavigator(
   {
     Home: Home,
@@ -65,7 +72,7 @@ const SwicthNavigator = createSwitchNavigator(
     App: AppStack,
   },
   {
-    initialRouteName: 'App',
+    initialRouteName: 'Auth',
   },
 );
 
