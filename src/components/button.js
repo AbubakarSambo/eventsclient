@@ -28,6 +28,23 @@ export const Button = ({ text, callBack }) => {
   );
 };
 
+export const IconButton = ({ callBack, name }) => {
+  let android = Platform.OS === 'android';
+  return android ? (
+    <TouchableNativeFeedback onPress={callBack}>
+      <View style={{ padding: 3 }}>
+        <Icon color={colors.gray} size={20} name={name} />
+      </View>
+    </TouchableNativeFeedback>
+  ) : (
+    <TouchableOpacity style={{ padding: 3 }} onPress={callBack}>
+      <View>
+        <Icon color={colors.gray} size={20} name={name} />
+      </View>
+    </TouchableOpacity>
+  );
+};
+
 export const SocialButton = ({ type, callBack }) => {
   let android = Platform.OS === 'android';
   const buttonType = type === 'facebook';

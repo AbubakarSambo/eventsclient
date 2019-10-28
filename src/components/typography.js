@@ -26,11 +26,26 @@ export const TextLink = ({ text, callBack }) => {
   );
 };
 
+export const CardTitle = ({ text }) => {
+  return <Text style={styles.cardTitle}>{text}</Text>;
+};
+export const FancyText = ({ text }) => {
+  return <Text style={styles.fancyText}>{text}</Text>;
+};
+
 const styles = StyleSheet.create({
   style: {
     marginLeft: 10,
   },
   textStyle: {
     color: colors.facebook,
+  },
+  cardTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    paddingBottom: 2,
+  },
+  fancyText: {
+    color: colors.primary,
   },
 });
