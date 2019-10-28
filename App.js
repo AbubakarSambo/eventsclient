@@ -7,25 +7,66 @@
  */
 
 import React from 'react';
-import { SafeAreaView, StyleSheet, StatusBar } from 'react-native';
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import {
+  createAppContainer,
+  createSwitchNavigator,
+} from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { colors } from './src/theme';
 import { Signup } from './src/screens/signup';
 import { Login } from './src/screens/login';
+import { Home } from './src/screens/home/home';
+import { Saved } from './src/screens/saved/saved';
+import { Profile } from './src/screens/profile/profile';
 
-const App = () => {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <Login />
-      </SafeAreaView>
-    </>
-  );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-  },
+const AuthStack = createStackNavigator({
+  Signup: Signup,
+  Login: Login,
 });
+const AppStack = createBottomTabNavigator(
+  {
+    Home: Home,
+    Saved: Saved,
+    Profile: Profile,
+  },
+  {
+    defaultNavigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, horizontal, tintColor }) => {
+        const { routeName } = navigation.state;
+        let iconName;
+        if (routeName === 'Home') {
+          iconName = 'home';
+        } else if (routeName === 'Saved') {
+          iconName = 'bookmark';
+        } else if (routeName === 'Profile') {
+          iconName = 'user';
+        }
+        return (
+          <Icon
+            color={focused ? colors.primary : colors.primaryDark}
+            size={20}
+            name={iconName}
+          />
+        );
+      },
+    }),
+    tabBarOptions: {
+      activeTintColor: colors.primary,
+      inactiveTintColor: 'gray',
+    },
+  },
+);
 
-export default App;
+const SwicthNavigator = createSwitchNavigator(
+  {
+    Auth: AuthStack,
+    App: AppStack,
+  },
+  {
+    initialRouteName: 'App',
+  },
+);
+
+export default createAppContainer(SwicthNavigator);
