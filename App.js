@@ -29,7 +29,8 @@ const AuthStack = createStackNavigator(
     Event: Event,
   },
   {
-    initialRouteName: 'Event',
+    headerMode: 'none',
+    initialRouteName: 'Signup',
   },
 );
 const AppStack = createBottomTabNavigator(
@@ -73,7 +74,7 @@ const SwicthNavigator = createSwitchNavigator(
     App: AppStack,
   },
   {
-    initialRouteName: 'Auth',
+    initialRouteName: 'App',
   },
 );
 

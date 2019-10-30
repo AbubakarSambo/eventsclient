@@ -8,7 +8,13 @@ import {
   StyleSheet,
   Image,
 } from 'react-native';
-import { Tag, IconButton, Filter } from '../../components';
+import {
+  Tag,
+  IconButton,
+  Filter,
+  CardTitle,
+  Header,
+} from '../../components';
 import { blue } from 'ansi-colors';
 import { colors } from '../../theme';
 
@@ -25,10 +31,12 @@ let items = [
 ];
 
 export const Event = () => {
-  const [filterModal, setFilterModal] = useState(true);
+  const [filterModal, setFilterModal] = useState(false);
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
+        <Header />
+        <CardTitle text="Event Title" />
         <Image
           style={{ width: '100%', height: 200 }}
           source={{
