@@ -1,17 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
   ScrollView,
+  Modal,
   SafeAreaView,
   StyleSheet,
   Image,
 } from 'react-native';
-import { Tag, IconButton } from '../../components';
+import { Tag, IconButton, Filter } from '../../components';
 import { blue } from 'ansi-colors';
 import { colors } from '../../theme';
 
+let items = [
+  { id: 1, text: 'sample', checked: true },
+  { id: 5, text: 'jamie', checked: true },
+  { id: 2, text: 'john', checked: true },
+  { id: 3, text: 'girl', checked: false },
+  { id: 46, text: 'boy', checked: true },
+  { id: 47, text: 'boy', checked: false },
+  { id: 48, text: 'joel', checked: true },
+  { id: 49, text: 'gerald', checked: false },
+  { id: 43, text: 'costume', checked: false },
+];
+
 export const Event = () => {
+  const [filterModal, setFilterModal] = useState(true);
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -79,6 +93,13 @@ export const Event = () => {
           </Text>
         </View>
       </ScrollView>
+      <View>
+        <Filter
+          visible={filterModal}
+          toggleFilterModal={() => setFilterModal(!filterModal)}
+          items={items}
+        />
+      </View>
     </SafeAreaView>
   );
 };
@@ -110,6 +131,8 @@ const styles = StyleSheet.create({
   details: {
     padding: 10,
     flex: 1.2,
+    borderRightWidth: 0.3,
+    borderColor: '#ddd',
   },
   bookmark: {
     padding: 10,
@@ -117,5 +140,7 @@ const styles = StyleSheet.create({
   },
   eventDesc: {
     padding: 10,
+    borderTopWidth: 0.5,
+    borderColor: '#ddd',
   },
 });

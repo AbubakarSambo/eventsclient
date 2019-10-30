@@ -28,6 +28,23 @@ export const Button = ({ text, callBack }) => {
   );
 };
 
+export const GroupButton = ({ text, callBack }) => {
+  let android = Platform.OS === 'android';
+  return android ? (
+    <TouchableNativeFeedback onPress={callBack}>
+      <View style={styles.groupButton}>
+        <Text style={styles.buttonText}>{text}</Text>
+      </View>
+    </TouchableNativeFeedback>
+  ) : (
+    <TouchableOpacity style={styles.groupButton} onPress={callBack}>
+      <View>
+        <Text style={styles.buttonText}>{text}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+};
+
 export const IconButton = ({ callBack, name, size, color }) => {
   let android = Platform.OS === 'android';
   return android ? (
@@ -88,6 +105,15 @@ const styles = StyleSheet.create({
     height: 45,
     justifyContent: 'center',
     alignItems: 'center',
+    margin: 10,
+    backgroundColor: colors.primary,
+  },
+  groupButton: {
+    borderWidth: 1,
+    borderColor: colors.black,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
     margin: 10,
     backgroundColor: colors.primary,
   },
