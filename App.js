@@ -35,7 +35,16 @@ const AuthStack = createStackNavigator(
 );
 const AppStack = createBottomTabNavigator(
   {
-    Home: Home,
+    Home: createStackNavigator(
+      {
+        Home: Home,
+        Event: Event,
+      },
+      {
+        headerMode: 'none',
+        initialRouteName: 'Home',
+      },
+    ),
     Saved: Saved,
     Profile: Profile,
   },

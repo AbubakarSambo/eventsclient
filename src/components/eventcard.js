@@ -5,33 +5,24 @@ import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { colors, typography, dimensions } from '../theme';
 import { IconButton } from './button';
 
-export const EventCard = ({
-  heading,
-  description,
-  date,
-  price,
-  callBack,
-}) => {
+export const EventCard = props => {
+  let android = Platform.OS === 'android';
+
+  let { title, description, date, price, saved, navigation } = props;
   return (
     <View style={styles.container}>
       <View style={styles.desc}>
-        <CardTitle text={heading} />
+        <CardTitle text={title} />
         <Text style={{ paddingBottom: 4 }} numberOfLines={4}>
-          Event Title is an event title because if it os not then how
-          will you know what to do with your life you bloody notorius
-          will you know what to do with your life you bloody notorius
-          will you know what to do with your life you bloody notorius
-          will you know what to do with your life you bloody notorius
-          will you know what to do with your life you bloody notorius
-          tagwai
+          {description}
         </Text>
-        <FancyText text="Saturday" />
-        <FancyText text="Free Entry" />
+        <FancyText text={date} />
+        <FancyText text={price} />
         <View style={styles.icons}>
           <IconButton
-            color={colors.gray}
+            color={saved ? colors.primary : colors.gray}
             size={20}
-            name="bookmark-o"
+            name={saved ? 'bookmark' : 'bookmark-o'}
           />
           <IconButton
             color={colors.gray}
