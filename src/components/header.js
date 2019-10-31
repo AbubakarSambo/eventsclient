@@ -13,13 +13,17 @@ import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { colors, typography, dimensions } from '../theme';
 import { IconButton } from './button';
 
-export const Header = ({ text, checked }) => {
+export const Header = ({ text, checked, navigation }) => {
+  const goBack = () => {
+    navigation.goBack();
+  };
   return (
     <View style={styles.container}>
       <IconButton
         name="chevron-left"
         size={20}
         color={colors.primaryDark}
+        callBack={goBack}
       />
     </View>
   );
@@ -47,5 +51,13 @@ export const HomeHeader = ({ text, children }) => {
 };
 
 const styles = StyleSheet.create({
-  landingText: { color: colors.gray, fontSize: 30 },
+  landingText: {
+    color: '#fff',
+    fontSize: 30,
+    fontWeight: 'bold',
+  },
+  container: {
+    // backgroundColor: '#fff',
+    height: 50,
+  },
 });

@@ -33,18 +33,29 @@ const AuthStack = createStackNavigator(
     initialRouteName: 'Signup',
   },
 );
+const HomeStack = createStackNavigator(
+  {
+    Home: Home,
+    Event: Event,
+  },
+  {
+    headerMode: 'none',
+    initialRouteName: 'Home',
+  },
+);
+HomeStack.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+  }
+
+  return {
+    tabBarVisible,
+  };
+};
 const AppStack = createBottomTabNavigator(
   {
-    Home: createStackNavigator(
-      {
-        Home: Home,
-        Event: Event,
-      },
-      {
-        headerMode: 'none',
-        initialRouteName: 'Home',
-      },
-    ),
+    Home: HomeStack,
     Saved: Saved,
     Profile: Profile,
   },

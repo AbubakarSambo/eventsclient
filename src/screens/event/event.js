@@ -30,12 +30,12 @@ let items = [
   { id: 43, text: 'costume', checked: false },
 ];
 
-export const Event = () => {
+export const Event = ({ navigation }) => {
   const [filterModal, setFilterModal] = useState(false);
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        <Header />
+        <Header navigation={navigation} />
         <CardTitle text="Event Title" />
         <Image
           style={{ width: '100%', height: 200 }}
